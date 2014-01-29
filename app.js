@@ -1,13 +1,13 @@
 
-/**
- * Module dependencies.
- */
-
+// module dependencies
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+
+// routes dependencies
+var routes = require('./routes');
+var about = require('./routes/about');
+var contact = require('./routes/contact');
 
 var app = express();
 
@@ -25,12 +25,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(express.errorHandler());
 }
 
+// routes
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/about', about.about);
+app.get('/contact/form', contact.contact);
+app.post('/contact/post', contact.postcontact);
+
+
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });

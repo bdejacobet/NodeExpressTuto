@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+    h3(class="muted") Demo Node.js 
+    hr
+    div(class="jumbotron")
+      h1 Contact
+      form(action='/contact/post',method='post')
+         input(id='email',name='email' ,type='text',value='',placeholder='Votre email')
+         input(id='nom', name='nom', type='text',value='',placeholder='Votre nom')
+         input(type='submit', value='Valider')
